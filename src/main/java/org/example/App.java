@@ -35,17 +35,20 @@ public class App {
                 case "4":
                     laddningsTid();
                     break;
+                case "5":
+                    visualisera();
+                    break;
                 case "e":
-                    System.out.println("Avslutar programmet...");
+                    System.out.print("Avslutar programmet...\n");
                     return;
                 default:
-                    System.out.println("Ogiltigt val, försök igen.");
+                    System.out.print("Ogiltigt val, försök igen.\n");
             }
         }
     }
 
     private void skrivMeny() {
-        System.out.println("""
+        System.out.print("""
                 Elpriser
                 ========
                 1. Inmatning
@@ -57,7 +60,7 @@ public class App {
     }
 
     private void inmatning() {
-        System.out.println("Ange elpriser för varje timme (i öre): ");
+        System.out.print("Ange elpriser för varje timme (i öre): \n");
         for (int i = 0; i < 24; i++) {
             System.out.print("Timme " + i + "-" + (i + 1) + ": ");
             priser[i] = Integer.parseInt(scanner.nextLine());
@@ -83,9 +86,9 @@ public class App {
         }
         double medelPris = sum / 24.0;
 
-        System.out.println("Lägsta pris: " + String.format("%02d-%02d", minTimme, minTimme + 1) + ", " + minPris + " öre/kWh");
-        System.out.println("Högsta pris: " + String.format("%02d-%02d", maxTimme, maxTimme + 1) + ", " + maxPris + " öre/kWh");
-        System.out.printf("Medelpris: %.2f öre\n", medelPris);
+        System.out.print("Lägsta pris: " + String.format("%02d-%02d", minTimme, minTimme + 1) + ", " + minPris + " öre/kWh\n");
+        System.out.print("Högsta pris: " + String.format("%02d-%02d", maxTimme, maxTimme + 1) + ", " + maxPris + " öre/kWh\n");
+        System.out.printf("Medelpris: %.2f öre/kWh\n", medelPris);
     }
 
     private void sortera() {
@@ -99,7 +102,7 @@ public class App {
         for (int[] par : timmePrisLista) {
             int timme = par[0];
             int pris = par[1];
-            System.out.println(String.format("%02d-%02d %d öre", timme, timme + 1, pris));
+            System.out.print(String.format("%02d-%02d %d öre\n", timme, timme + 1, pris));
         }
     }
 
@@ -116,7 +119,11 @@ public class App {
         }
 
         double medelPris = billigastePrisSumma / 4.0;
-        System.out.println("Påbörja laddning klockan " + billigasteStart);
+        System.out.print("Påbörja laddning klockan " + billigasteStart + "\n");
         System.out.printf("Medelpris 4h: %.1f öre/kWh\n", medelPris);
+    }
+
+    private void visualisera(){
+
     }
 }
