@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -55,6 +56,7 @@ public class App {
                 2. Min, Max och Medel
                 3. Sortera
                 4. Bästa Laddningstid (4h)
+                5. Visualisera
                 e. Avsluta
                 """);
     }
@@ -123,7 +125,34 @@ public class App {
         System.out.printf("Medelpris 4h: %.1f öre/kWh\n", medelPris);
     }
 
-    private void visualisera(){
+    private void visualisera() {
+        int maxPris = Arrays.stream(priser).max().orElse(1);
+        int höjd = 15;
+        int skala = (int) Math.ceil(maxPris / (double) höjd);
 
+        System.out.println("Visualisering av elpriser:");
+
+        for (int level = maxPris; level >= 0; level -= skala) {
+            System.out.printf("%4d| ", level);
+            for (int pris : priser) {
+                if (pris >= level) {
+                    System.out.print(" x ");
+                } else {
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
+        }
+        System.out.print("    |");
+        for (int i = 0; i < priser.length; i++) {
+            System.out.print("---");
+        }
+        System.out.println("|");
+
+        System.out.print("      ");
+        for (int i = 0; i < priser.length; i++) {
+            System.out.print(String.format("%2d ", i));
+        }
+        System.out.println();
     }
 }
