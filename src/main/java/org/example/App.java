@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class App {
-    private int[] priser = new int[24];
-    private Scanner scanner;
+    private final int[] priser = new int[24];
+    private final Scanner scanner;
 
     public App(Scanner scanner) {
         this.scanner = scanner;
@@ -104,7 +104,7 @@ public class App {
         for (int[] par : timmePrisLista) {
             int timme = par[0];
             int pris = par[1];
-            System.out.print(String.format("%02d-%02d %d öre\n", timme, timme + 1, pris));
+            System.out.printf("%02d-%02d %d öre\n", timme, timme + 1, pris);
         }
     }
 
@@ -127,8 +127,8 @@ public class App {
 
     private void visualisera() {
         int maxPris = Arrays.stream(priser).max().orElse(1);
-        int höjd = 15;
-        int skala = (int) Math.ceil(maxPris / (double) höjd);
+        int height = 15;
+        int skala = (int) Math.ceil(maxPris / (double) height);
 
         System.out.println("Visualisering av elpriser:");
 
@@ -151,7 +151,7 @@ public class App {
 
         System.out.print("      ");
         for (int i = 0; i < priser.length; i++) {
-            System.out.print(String.format("%2d ", i));
+            System.out.printf("%2d ", i);
         }
         System.out.println();
     }
