@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
     private final int[] priser = new int[24];
@@ -14,6 +11,7 @@ public class App {
     }
 
     public static void main(String[] args) {
+        Locale.setDefault(Locale.forLanguageTag("sv-SV"));
         App app = new App(new Scanner(System.in));
         app.run();
     }
