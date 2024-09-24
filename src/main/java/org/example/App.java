@@ -1,17 +1,24 @@
 package org.example;
 
-import java.util.*;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class App {
     private final int[] priser = new int[24];
     private final Scanner scanner;
+
+    // Gör Locale till en final instansvariabel
+    private final Locale SWEDISH_LOCALE = new Locale("sv", "SE");
 
     public App(Scanner scanner) {
         this.scanner = scanner;
     }
 
     public static void main(String[] args) {
-        Locale.setDefault(Locale.forLanguageTag("sv-SV"));
         App app = new App(new Scanner(System.in));
         app.run();
     }
@@ -86,9 +93,12 @@ public class App {
         }
         double medelPris = sum / 24.0;
 
+        NumberFormat formatter = NumberFormat.getInstance(SWEDISH_LOCALE);
+        formatter.setMinimumFractionDigits(2);
+
         System.out.print("Lägsta pris: " + String.format("%02d-%02d", minTimme, minTimme + 1) + ", " + minPris + " öre/kWh\n");
         System.out.print("Högsta pris: " + String.format("%02d-%02d", maxTimme, maxTimme + 1) + ", " + maxPris + " öre/kWh\n");
-        System.out.printf("Medelpris: %.2f öre/kWh\n", medelPris);
+        System.out.print("Medelpris: " + formatter.format(medelPris) + " öre/kWh\n");
     }
 
     private void sortera() {
@@ -119,8 +129,12 @@ public class App {
         }
 
         double medelPris = billigastePrisSumma / 4.0;
+
+        NumberFormat formatter = NumberFormat.getInstance(SWEDISH_LOCALE);
+        formatter.setMinimumFractionDigits(1);
+
         System.out.print("Påbörja laddning klockan " + billigasteStart + "\n");
-        System.out.printf("Medelpris 4h: %.1f öre/kWh\n", medelPris);
+        System.out.print("Medelpris 4h: " + formatter.format(medelPris) + " öre/kWh\n");
     }
 
     private void visualisera() {
