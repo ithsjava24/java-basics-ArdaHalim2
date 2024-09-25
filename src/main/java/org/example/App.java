@@ -86,8 +86,8 @@ public class App {
         }
         double medelPris = sum / 24.0;
 
-        System.out.print("Lägsta pris: " + String.format("%02d-%02d", minTimme, minTimme + 1) + " " + minPris + " öre/kWh\n");
-        System.out.print("Högsta pris: " + String.format("%02d-%02d", maxTimme, maxTimme + 1) + " " + maxPris + " öre/kWh\n");
+        System.out.printf("Lägsta pris: %02d-%02d, %d öre/kWh\n", minTimme, (minTimme + 1) % 24 == 0 ? 24 : (minTimme + 1) % 24, minPris);
+        System.out.printf("Högsta pris: %02d-%02d, %d öre/kWh\n", maxTimme, (maxTimme + 1) % 24 == 0 ? 24 : (maxTimme + 1) % 24, maxPris);
         System.out.printf("Medelpris: %.2f öre/kWh\n", medelPris);
     }
 
