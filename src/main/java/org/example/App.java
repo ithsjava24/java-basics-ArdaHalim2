@@ -11,7 +11,6 @@ public class App {
     private final int[] priser = new int[24];
     private final Scanner scanner;
 
-    // Gör Locale till en final instansvariabel
     private final Locale SWEDISH_LOCALE = new Locale("sv", "SE");
 
     public App(Scanner scanner) {
@@ -96,8 +95,8 @@ public class App {
         NumberFormat formatter = NumberFormat.getInstance(SWEDISH_LOCALE);
         formatter.setMinimumFractionDigits(2);
 
-        System.out.print("Lägsta pris: " + String.format("%02d-%02d", minTimme, minTimme + 1) + ", " + minPris + " öre/kWh\n");
-        System.out.print("Högsta pris: " + String.format("%02d-%02d", maxTimme, maxTimme + 1) + ", " + maxPris + " öre/kWh\n");
+        System.out.print("Lägsta pris: " + String.format("%02d-%02d", minTimme, minTimme + 1) + minPris + " öre/kWh\n");
+        System.out.print("Högsta pris: " + String.format("%02d-%02d", maxTimme, maxTimme + 1) + maxPris + " öre/kWh\n");
         System.out.print("Medelpris: " + formatter.format(medelPris) + " öre/kWh\n");
     }
 
